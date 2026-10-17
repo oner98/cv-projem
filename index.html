@@ -3,38 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ali Öner Filibeli kişisel portfolyo ve CV sayfası. Full-stack, cloud ve yazılım geliştirme deneyimi.">
+    <link rel="canonical" href="https://oner98.github.io/cv-projem/">
     <title>Ali Öner Filibeli | Portfolyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0f172a; color: #e2e8f0; scroll-behavior: smooth; font-family: 'Inter', sans-serif; }
+        body { background: radial-gradient(circle at top, rgba(14, 116, 144, 0.14), transparent 30%), #0f172a; color: #e2e8f0; scroll-behavior: smooth; font-family: 'Inter', sans-serif; }
         .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card { background: #1e293b; border: 1px solid #334155; transition: all 0.3s; height: 100%; }
-        .card:hover { transform: translateY(-5px); border-color: #38bdf8; box-shadow: 0 10px 30px -15px rgba(56, 189, 248, 0.3); }
+        .card { background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(51, 65, 85, 0.9); transition: all 0.3s; height: 100%; }
+        .card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.7); box-shadow: 0 10px 30px -15px rgba(56, 189, 248, 0.35); }
         .section-title { position: relative; display: inline-block; padding-bottom: 8px; }
         .section-title::after { content: ''; position: absolute; width: 60%; height: 4px; background: #38bdf8; bottom: 0; left: 0; border-radius: 2px; }
+        .skill-badge { display: inline-flex; align-items: center; padding: 0.55rem 0.9rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); color: #bae6fd; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; }
+        .metric-card { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.22); border-radius: 1rem; padding: 1.2rem; text-align: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03); }
+        .metric-card .value { font-size: 2rem; font-weight: 800; color: #7dd3fc; }
+        .metric-card .label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #cbd5e1; }
+        .btn-primary, .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1.6rem; border-radius: 9999px; font-weight: 700; transition: all 0.2s ease; }
+        .btn-primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #05111d; box-shadow: 0 16px 30px -15px rgba(56, 189, 248, 0.8); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px -16px rgba(96,165,250,0.85); }
+        .btn-secondary { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; }
+        .btn-secondary:hover { border-color: rgba(56, 189, 248, 0.7); color: #7dd3fc; }
+        .hero-tag { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 0.9rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.08); color: #bae6fd; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; }
+        .highlight-panel { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 1.2rem; padding: 1.5rem; }
+        .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .contact-form { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148,163,184,0.22); border-radius: 1rem; padding: 1.25rem; }
+        .contact-form input, .contact-form textarea { width: 100%; border: 1px solid rgba(148,163,184,0.25); background: rgba(15,23,42,0.7); color: #e2e8f0; border-radius: 0.75rem; padding: 0.8rem 0.95rem; outline: none; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: rgba(56,189,248,0.7); box-shadow: 0 0 0 3px rgba(56,189,248,0.15); }
+        .mobile-menu { display: none; }
+        @media (max-width: 767px) {
+            .mobile-menu { display: inline-flex; }
+            .desktop-nav { display: none !important; }
+            .menu-panel {
+                position: absolute;
+                top: calc(100% + 0.75rem);
+                left: 0.75rem;
+                right: 0.75rem;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: all 0.25s ease;
+                background: rgba(15, 23, 42, 0.96);
+                border: 1px solid rgba(148, 163, 184, 0.25);
+                border-radius: 1rem;
+                padding: 1rem;
+                box-shadow: 0 18px 40px rgba(2, 6, 23, 0.45);
+            }
+            .menu-panel.open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+            .menu-panel a { display: block; padding: 0.75rem 0.5rem; border-radius: 0.75rem; color: #cbd5e1; }
+            .menu-panel a:hover { background: rgba(56, 189, 248, 0.08); color: #7dd3fc; }
+        }
     </style>
 </head>
 <body>
 
     <nav class="fixed w-full z-50 bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800 p-4">
-        <div class="container mx-auto flex justify-between items-center">
+        <div class="container mx-auto flex justify-between items-center relative">
             <h1 class="text-xl font-bold gradient-text">Ali Öner Filibeli</h1>
-            <div class="space-x-6 hidden md:block text-sm font-medium">
+            <div class="desktop-nav hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="#about" class="hover:text-sky-400 transition">Hakkımda</a>
                 <a href="#projects" class="hover:text-sky-400 transition">Projeler</a>
                 <a href="#experience" class="hover:text-sky-400 transition">Deneyim</a>
                 <a href="#certifications" class="hover:text-sky-400 transition">Sertifikalar</a>
                 <a href="#contact" class="hover:text-sky-400 transition">İletişim</a>
+                <a href="Ali_Oner_Filibeli_CV.pdf" download class="btn-primary text-sm py-2.5 px-4 !rounded-full">CV İndir</a>
+            </div>
+
+            <button id="mobileMenuBtn" class="mobile-menu inline-flex items-center justify-center w-11 h-11 rounded-full bg-slate-800 border border-slate-700 text-slate-100" aria-label="Menü">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+
+            <div id="mobileMenu" class="menu-panel md:hidden">
+                <a href="#about">Hakkımda</a>
+                <a href="#projects">Projeler</a>
+                <a href="#experience">Deneyim</a>
+                <a href="#certifications">Sertifikalar</a>
+                <a href="#contact">İletişim</a>
+                <a href="Ali_Oner_Filibeli_CV.pdf" download class="mt-2 inline-flex items-center justify-center rounded-full bg-sky-400 text-slate-900 font-semibold px-4 py-2">CV İndir</a>
             </div>
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 reveal">
+        <span class="hero-tag">Full-Stack & Cloud Developer</span>
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Ali Öner <span class="gradient-text">Filibeli</span></h1>
         <p class="text-lg md:text-xl text-slate-400 max-w-3xl leading-relaxed">
-            Yönetim Bilişim Sistemleri Uzmanı & Developer. 
-            Mikroservis mimarisi ve ölçeklenebilir çözümler üzerine odaklanan profesyonel.
+            Yönetim Bilişim Sistemleri Uzmanı & Developer.
+            Mikroservis mimarisi, bulut çözümleri ve kullanıcı odaklı ürün geliştirme üzerine çalışan profesyonel.
         </p>
         <div class="mt-10 flex flex-wrap justify-center gap-8">
             <a href="https://github.com/oner98" target="_blank" class="flex items-center gap-2 hover:text-sky-400 transition text-lg font-medium">
@@ -44,9 +104,48 @@
                 <i class="fab fa-linkedin text-2xl text-[#0077b5]"></i> linkedin.com/in/ali-öner-filibeli-5086b82b8
             </a>
         </div>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="Ali_Oner_Filibeli_CV.pdf" download class="btn-primary"><i class="fas fa-download"></i> CV İndir</a>
+            <a href="#projects" class="btn-secondary"><i class="fas fa-arrow-right"></i> Projeleri Gör</a>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-3 w-full max-w-4xl">
+            <div class="metric-card reveal">
+                <div class="value">5+</div>
+                <div class="label">Proje</div>
+            </div>
+            <div class="metric-card reveal">
+                <div class="value">3+</div>
+                <div class="label">Bulut deneyimi</div>
+            </div>
+            <div class="metric-card reveal">
+                <div class="value">2+</div>
+                <div class="label">Sektörel katılım</div>
+            </div>
+        </div>
     </section>
 
-    <section id="about" class="py-24 bg-slate-900/50">
+    <section class="py-4 reveal">
+        <div class="container mx-auto px-6">
+            <div class="highlight-panel grid md:grid-cols-3 gap-6 text-center">
+                <div>
+                    <p class="text-sky-400 text-2xl font-bold">1</p>
+                    <p class="text-slate-300 text-sm mt-2">Kullanıcı odaklı ürün yaklaşımı</p>
+                </div>
+                <div>
+                    <p class="text-sky-400 text-2xl font-bold">2</p>
+                    <p class="text-slate-300 text-sm mt-2">Mikroservis ve bulut tasarım hedefi</p>
+                </div>
+                <div>
+                    <p class="text-sky-400 text-2xl font-bold">3</p>
+                    <p class="text-slate-300 text-sm mt-2">Sürekli öğrenme ve ekip uyumu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-slate-900/50 reveal">
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16">
                 <div>
@@ -57,50 +156,179 @@
                             <p class="text-sky-400 text-sm font-semibold">Yönetim Bilişim Sistemleri (%100 İngilizce)</p>
                             <p class="text-slate-400 mt-1 text-sm">GPA: 2.13/4.00 | İstanbul</p>
                             <p class="text-slate-500 text-xs mt-2 leading-relaxed">
-                                ABET akreditasyonlu eğitim modeli ile teknik ve yönetsel becerilerin harmanlanması.
+                                ABET akreditasyonlu model ile teknik bilgi, analitik düşünce ve iş süreçlerini birlikte değerlendirme becerisi kazandım.
                             </p>
                         </div>
                         <div class="border-l-2 border-slate-700 pl-4">
                             <h3 class="text-xl font-bold text-white">Anadolu Üniversitesi</h3>
                             <p class="text-sky-400 text-sm font-semibold">Uluslararası İlişkiler</p>
-                            <p class="text-slate-500 text-xs mt-1">Stratejik analiz ve küresel diplomasi eğitimi.</p>
+                            <p class="text-slate-500 text-xs mt-1">Stratejik düşünme, iletişim ve çok kültürlü çalışma yaklaşımı geliştirdim.</p>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold mb-8 section-title">Teknik Yetkinlikler</h2>
-                    <div class="grid grid-cols-2 gap-4 text-slate-400 text-sm">
-                        <ul class="space-y-3">
-                            <li><span class="text-sky-400 font-bold">Diller:</span> Java, Python, C#, Kotlin</li>
-                            <li><span class="text-sky-400 font-bold">Backend:</span> Spring Boot, .NET Core</li>
-                            <li><span class="text-sky-400 font-bold">DB:</span> MySQL, PostgreSQL</li>
-                        </ul>
-                        <ul class="space-y-3">
-                            <li><span class="text-sky-400 font-bold">Cloud:</span> AWS, Azure, GCP</li>
-                            <li><span class="text-sky-400 font-bold">DevOps:</span> Docker, Kubernetes</li>
-                            <li><span class="text-sky-400 font-bold">Diller:</span> İngilizce (C1), Almanca</li>
-                        </ul>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Yazılım geliştirme, sistem tasarımı, bulut altyapısı ve veri odaklı iş akışları alanında çalışmaya odaklandığım bir profilim var. Projelerimde hem kullanıcı deneyimini hem de sürdürülebilir teknik çözümleri ön planda tutuyorum.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">Kotlin</span>
+                        <span class="skill-badge">Spring Boot</span>
+                        <span class="skill-badge">.NET Core</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">AWS</span>
+                        <span class="skill-badge">Azure</span>
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">Kubernetes</span>
+                        <span class="skill-badge">İngilizce (C1)</span>
+                        <span class="skill-badge">Almanca</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-24">
+    <section id="projects" class="py-24 reveal">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12 section-title">Projeler</h2>
             <div class="grid md:grid-cols-3 gap-8 text-left">
                 <div class="card p-8 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-3 text-white">Serverless Booking</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">AWS Lambda ve DynamoDB tabanlı bulut yerel etkinlik yönetim sistemi.</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Serverless Booking</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">AWS</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Etkinlik/rezervasyon süreçlerini otomatikleştiren serverless uygulama. Lambda tabanlı iş akışları ve DynamoDB ile güvenli ve ölçeklenebilir bir yapı sundu.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Lambda</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">DynamoDB</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Serverless</span>
+                    </div>
                 </div>
+
                 <div class="card p-8 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-3 text-white">Expense Tracker</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Kotlin ile geliştirilmiş, veri görselleştirme özellikli mobil uygulama.</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Expense Tracker</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Kotlin</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Mobil kullanıcı deneyimi ön planda tutularak geliştirdiğim harcama takibi uygulaması. Grafiksel özetler, kategori bazlı analiz ve veri takibi sunuyor.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Android</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">UI/UX</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Analytics</span>
+                    </div>
                 </div>
+
                 <div class="card p-8 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-3 text-white">Weather App</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">REST API entegrasyonlu ve Firebase cache destekli hava durumu uygulaması.</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Weather App</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">API</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        REST API entegrasyonu ve önbellekleme mantığı ile geliştirilen hava durumu uygulaması; hızlı erişim ve düşük gecikmeyi hedefledi.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">REST</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Firebase</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Caching</span>
+                    </div>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">School Management</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Java</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Öğrenci, öğretmen, ders ve not yönetimini tek bir sistemde birleştiren kurumsal uygulama. İş akışlarını sadeleştirerek daha düzenli bir veri yönetimi sağladı.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Spring</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">MySQL</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Admin Panel</span>
+                    </div>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Smart Inventory</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">C#</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Stok takibi, satış raporları ve düşük stok uyarıları ile çalışan .NET tabanlı kurumsal çözüm. Operasyonel kararları daha hızlı vermeyi kolaylaştırdı.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">.NET</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">PostgreSQL</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Dashboard</span>
+                    </div>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">AI Task Assistant</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Python</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Görev planlama, otomasyon ve akış yönlendirme mantığı içeren yapay zeka destekli yardımcı. İş sürekliliğini artıran ve tekrar eden işlemleri azaltan bir çözümdü.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Automation</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">FastAPI</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">AI</span>
+                    </div>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Cloud Deploy Monitor</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Azure</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Uygulama dağıtım durumunu izleyen, hataları loglayabilen ve servis sağlığını takip eden bulut izleme çözümü. DevOps odaklı görünüm ve operasyonel sürdürülebilirlik oluşturdu.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Azure</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Monitoring</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">DevOps</span>
+                    </div>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Microservice Gateway</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Docker</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Birden fazla servis arasında yönlendirme, güvenlik ve ağ tasarımını yöneten mikroservis mimarisi örneği. Hizmetler arası iletişimi daha düzenli ve yönetilebilir hale getirdi.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Microservices</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Docker</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Data Insight Hub</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">SQL</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        MySQL ve PostgreSQL verilerini birleştirerek rapor ve özetleme arayüzü oluşturan analitik altyapı. Karar verme süreçlerinde veri odaklı yaklaşımı destekledi.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">SQL</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Analytics</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Reporting</span>
+                    </div>
                 </div>
             </div>
             <div class="mt-12 text-slate-500 text-sm italic">
@@ -109,11 +337,10 @@
         </div>
     </section>
 
-    <section id="experience" class="py-24 bg-slate-900/50">
+    <section id="experience" class="py-24 bg-slate-900/50 reveal">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 section-title">Deneyim</h2>
             <div class="space-y-8">
-                <!-- Content Team Lead -->
                 <div class="card p-8 rounded-2xl border-l-4 border-l-sky-500">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
                         <div>
@@ -122,14 +349,14 @@
                         </div>
                         <span class="text-slate-400 text-xs whitespace-nowrap">Aralık 2024 - Günümüz</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">İçerik yaratıcılarından oluşan bir takımı yönetim bakış açısından kurul ve üyelik katılımlarını geliştirmek için stratejik içerik üretimi ve yönetimi yoluyla takımı yönettim.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Takım içindeki içerik üretimini planlayarak, süreçleri organize ederek ve üyelerle koordinasyonu sağlayarak daha güçlü bir içerik akışı oluşturdum. Bu yaklaşım, iletişim kalitesini ve organizasyonel verimliliği artırdı.</p>
                     <div class="mt-3 flex flex-wrap gap-2">
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Takım Yönetimi</span>
-                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">İçerik Yönetimi</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">İçerik Planlama</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Koordinasyon</span>
                     </div>
                 </div>
 
-                <!-- Member -->
                 <div class="card p-8 rounded-2xl border-l-4 border-l-sky-500">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
                         <div>
@@ -138,14 +365,14 @@
                         </div>
                         <span class="text-slate-400 text-xs whitespace-nowrap">Şubat 2024 - Günümüz</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Kurul etkinliklerinin baştan sona planlanması ve yürütülmesine aktif olarak katkıda bulundum, kapsayıcılığı ve operasyonel verimliliği öncelik aldım.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Etkinliklerin planlanması, organizasyonel akışın yönetimi ve üyeler arası iletişimin güçlendirilmesi süreçlerinde aktif rol aldım. Yönetsel ve operasyonel yaklaşımları bir arada kullanarak daha düzenli ve kapsayıcı bir yapı kurmaya çalıştım.</p>
                     <div class="mt-3 flex flex-wrap gap-2">
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Etkinlik Yönetimi</span>
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Proje Koordinasyonu</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Operasyon</span>
                     </div>
                 </div>
 
-                <!-- Volunteer -->
                 <div class="card p-8 rounded-2xl border-l-4 border-l-sky-500">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
                         <div>
@@ -154,14 +381,13 @@
                         </div>
                         <span class="text-slate-400 text-xs whitespace-nowrap">Kasım 2023 - Günümüz</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Temel insani yardım (Kızılay) ve çevre koruma (TEMA) faaliyetlerine katılarak, lojistik, esneklik ve toplum çalışmaları alanında beceri geliştirdim.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">İnsan odaklı faaliyetlerde yer alarak ekip çalışması, sorumluluk bilinci ve toplum hizmeti anlayışını geliştirdim. Bu deneyim, hem iş birlikçi yaklaşımı hem de pratik organizasyon becerilerini güçlendirdi.</p>
                     <div class="mt-3 flex flex-wrap gap-2">
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Toplum Hizmeti</span>
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Çevre Koruma</span>
                     </div>
                 </div>
 
-                <!-- Full-stack Developer -->
                 <div class="card p-8 rounded-2xl border-l-4 border-l-sky-500">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
                         <div>
@@ -170,15 +396,14 @@
                         </div>
                         <span class="text-slate-400 text-xs whitespace-nowrap">Ocak 2025 - Aralık 2025</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-3">EduBridge, düşük bağlantılı ve düşük gelirli ortamlarda yaşayan öğrencilere kişiselleştirilmiş, yüksek kaliteli eğitim sunmak için uyarlanabilir öğrenme teknolojisi, çevrimdışı erişilebilirlik ve sosyal etki odaklı iş modelini birleştiren yapay zeka destekli bir eğitim platformu.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-3">Düşük bağlantı koşullarında ve düşük gelirli ortamlarda öğrenim gören bireyler için tasarlanmış eğitim platformunda frontend ve backend geliştirme süreçlerine katkıda bulundum. Kullanıcı odaklı tasarım, erişilebilirlik ve öğrenme deneyimini iyileştirmeye yönelik çalışmalarda aktif rol aldım.</p>
                     <div class="mt-3 flex flex-wrap gap-2">
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Frontend Development</span>
                         <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Backend Development</span>
-                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Proje Tabanlı Öğrenme</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Sosyal Etki</span>
                     </div>
                 </div>
 
-                <!-- ERP Consultant -->
                 <div class="card p-8 rounded-2xl border-l-4 border-l-sky-500">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
                         <div>
@@ -187,18 +412,18 @@
                         </div>
                         <span class="text-slate-400 text-xs whitespace-nowrap">Mayıs 2025 - Eylül 2025</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-3">Kaytazdere Belediyesi'nde dijital dönüşüm girişimlerine aktif olarak katkıda bulundum. ERP sistemlerinin çeşitli belediye departmanları (Maliye, Bayındırlık, İnsan Kaynakları) arasında uygulanması ve optimizasyonunu destekledim. Departmental iş akışlarını analiz ederek sorunsuz veri entegrasyonunu sağladım, yeni modüller için sistem testleri yaptım ve operasyonel verimliliği artırıcı veri odaklı raporlar oluşturmaya yardımcı oldum.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-3">Belediye süreçlerinde dijital dönüşüm ve veri akışı optimizasyonu konularında çalıştım. ERP sisteminin farklı departmanlar arasındaki kullanımını analiz ederken operasyonel hataları azaltmaya ve raporlama süreçlerini güçlendirmeye odaklandım.</p>
                     <div class="mt-3 flex flex-wrap gap-2">
-                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Finans (ERP)</span>
-                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Bulut Yönetimi</span>
-                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Sistem Analizi</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">ERP</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">Veri Analizi</span>
+                        <span class="text-xs bg-slate-800 text-sky-300 px-2 py-1 rounded">İş Akışı</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="certifications" class="py-24 bg-slate-900/50">
+    <section id="certifications" class="py-24 bg-slate-900/50 reveal">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12 section-title">Sertifikalar & Eğitimler</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -345,9 +570,34 @@
         </div>
     </section>
 
-    <footer id="contact" class="py-12 border-t border-slate-800 text-center">
+    <footer id="contact" class="py-12 border-t border-slate-800 text-center reveal">
         <div class="container mx-auto px-6">
-            <h2 class="text-2xl font-bold mb-8">İletişime Geç</h2>
+            <h2 class="text-2xl font-bold mb-4">İletişime Geç</h2>
+            <p class="text-slate-400 text-sm max-w-2xl mx-auto mb-8">İş fırsatları, proje görüşmeleri veya ekip iş birlikleri için her zaman iletişime açığım. Kısa bir mesajla hızlı şekilde geri dönüş sağlayabilirim.</p>
+
+            <div class="max-w-2xl mx-auto mb-10 contact-form">
+                <form id="contactForm">
+                    <div class="grid md:grid-cols-2 gap-4 mb-4 text-left">
+                        <div>
+                            <label for="name" class="block text-sm text-slate-300 mb-2">Ad Soyad</label>
+                            <input id="name" name="name" type="text" placeholder="Adınız ve soyadınız" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm text-slate-300 mb-2">E-posta</label>
+                            <input id="email" name="email" type="email" placeholder="ornek@email.com" required>
+                        </div>
+                    </div>
+                    <div class="text-left mb-4">
+                        <label for="message" class="block text-sm text-slate-300 mb-2">Mesaj</label>
+                        <textarea id="message" name="message" rows="5" placeholder="İletmek istediğiniz mesajınızı yazın..." required></textarea>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <button type="submit" class="btn-primary w-full sm:w-auto"><i class="fas fa-paper-plane"></i> Mesaj Gönder</button>
+                        <p id="contactStatus" class="text-sm text-slate-300 min-h-[1.5rem]"></p>
+                    </div>
+                </form>
+            </div>
+
             <div class="flex flex-col items-center gap-3 text-slate-400 text-sm mb-10">
                 <p>
                     <i class="fas fa-map-marker-alt text-sky-500 mr-2"></i>Karamürsel, Kocaeli, Türkiye
@@ -365,6 +615,94 @@
             <p class="text-slate-700 text-[10px] uppercase tracking-widest">&copy; 2026 Ali Öner Filibeli</p>
         </div>
     </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                const icon = menuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        const contactForm = document.getElementById('contactForm');
+        const contactStatus = document.getElementById('contactStatus');
+        const isLocalEnvironment = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        const localApiBase = 'http://localhost:3000';
+
+        if (contactForm && contactStatus) {
+            contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(contactForm);
+                const payload = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    message: formData.get('message')
+                };
+
+                contactStatus.textContent = 'Gönderiliyor...';
+                contactStatus.style.color = '#cbd5e1';
+
+                if (!isLocalEnvironment) {
+                    const subject = encodeURIComponent('İletişim talebi');
+                    const body = encodeURIComponent(`Ad Soyad: ${payload.name}\nE-posta: ${payload.email}\n\nMesaj:\n${payload.message}`);
+                    window.location.href = `mailto:filibelialioner@gmail.com?subject=${subject}&body=${body}`;
+                    contactStatus.textContent = 'E-posta uygulamanız açıldı. Mesajınızı göndermeyi tamamlayabilirsiniz.';
+                    contactStatus.style.color = '#7dd3fc';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${localApiBase}/api/contact`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    contactStatus.textContent = result.message || 'Mesajınız gönderildi.';
+                    contactStatus.style.color = response.ok ? '#7dd3fc' : '#fca5a5';
+
+                    if (response.ok) {
+                        contactForm.reset();
+                    }
+                } catch (error) {
+                    contactStatus.textContent = 'Sunucuya erişilemedi. Lütfen daha sonra tekrar deneyin.';
+                    contactStatus.style.color = '#fca5a5';
+                }
+            });
+        }
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+    </script>
 
 </body>
 </html>

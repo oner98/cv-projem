@@ -1,0 +1,20 @@
+{
+  "name": "cv-projem",
+  "version": "1.0.0",
+  "description": "Portfolio and CV application with lightweight backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "cv",
+    "express"
+  ],
+  "author": "Ali Öner Filibeli",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
