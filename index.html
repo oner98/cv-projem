@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ali Öner Filibeli kişisel portfolyo ve CV sayfası. Full-stack, cloud ve yazılım geliştirme deneyimi.">
     <link rel="canonical" href="https://oner98.github.io/cv-projem/">
+    <meta name="api-base-url" content="">
     <title>Ali Öner Filibeli | Portfolyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -646,8 +647,10 @@
 
         const contactForm = document.getElementById('contactForm');
         const contactStatus = document.getElementById('contactStatus');
+        const configuredApiBase = document.querySelector('meta[name="api-base-url"]').content.trim();
         const isLocalEnvironment = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-        const localApiBase = 'http://localhost:3000';
+        const localApiBase = isLocalEnvironment ? 'http://localhost:8080' : '';
+        const apiBaseUrl = (configuredApiBase || localApiBase).replace(/\/+$/, '');
 
         if (contactForm && contactStatus) {
             contactForm.addEventListener('submit', async (event) => {
@@ -662,7 +665,7 @@
                 contactStatus.textContent = 'Gönderiliyor...';
                 contactStatus.style.color = '#cbd5e1';
 
-                if (!isLocalEnvironment) {
+                if (!apiBaseUrl) {
                     const subject = encodeURIComponent('İletişim talebi');
                     const body = encodeURIComponent(`Ad Soyad: ${payload.name}\nE-posta: ${payload.email}\n\nMesaj:\n${payload.message}`);
                     window.location.href = `mailto:filibelialioner@gmail.com?subject=${subject}&body=${body}`;
@@ -672,14 +675,16 @@
                 }
 
                 try {
-                    const response = await fetch(`${localApiBase}/api/contact`, {
+                    const response = await fetch(`${apiBaseUrl}/api/contact`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
 
                     const result = await response.json();
-                    contactStatus.textContent = result.message || 'Mesajınız gönderildi.';
+                    contactStatus.textContent = result.message || (response.ok
+                        ? 'Mesajınız gönderildi.'
+                        : 'Mesaj gönderilemedi. Lütfen tekrar deneyin.');
                     contactStatus.style.color = response.ok ? '#7dd3fc' : '#fca5a5';
 
                     if (response.ok) {
@@ -688,6 +693,7 @@
                 } catch (error) {
                     contactStatus.textContent = 'Sunucuya erişilemedi. Lütfen daha sonra tekrar deneyin.';
                     contactStatus.style.color = '#fca5a5';
+                    console.error('İletişim formu isteği başarısız oldu:', error);
                 }
             });
         }
