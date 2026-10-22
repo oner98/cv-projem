@@ -45,7 +45,9 @@ class PortfolioApiIntegrationTest {
         mockMvc.perform(get("/api/projects"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(9))
-                .andExpect(jsonPath("$[0].title").value("Serverless Booking"));
+                .andExpect(jsonPath("$[0].title").value("Serverless Booking"))
+                .andExpect(jsonPath("$[1].title").value("Android Kotlin Uygulaması"))
+                .andExpect(jsonPath("$[5].title").value("Yapay Zeka Yardımcısı"));
     }
 
     @Test
