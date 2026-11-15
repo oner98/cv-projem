@@ -1,0 +1,3 @@
+com\alioner\portfolio\admin\AdminController.class
+com\alioner\portfolio\admin\SecurityConfig.class
+com\alioner\portfolio\admin\PortfolioAdminApplication.class

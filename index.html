@@ -10,31 +10,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: radial-gradient(circle at top, rgba(14, 116, 144, 0.14), transparent 30%), #0f172a; color: #e2e8f0; scroll-behavior: smooth; font-family: 'Inter', sans-serif; }
-        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card { background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(51, 65, 85, 0.9); transition: all 0.3s; height: 100%; }
-        .card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.7); box-shadow: 0 10px 30px -15px rgba(56, 189, 248, 0.35); }
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-soft: rgba(17, 17, 22, 0.85);
+            --bg-panel: rgba(19, 19, 26, 0.82);
+            --bg-card: rgba(20, 20, 28, 0.78);
+            --bg-strong: rgba(10, 10, 15, 0.98);
+            --text-primary: #f5f5f4;
+            --text-secondary: #d6d3d1;
+            --text-muted: #a8a29e;
+            --text-strong: #ffffff;
+            --accent: #d4af6d;
+            --accent-2: #b8893c;
+            --accent-soft: rgba(212, 175, 109, 0.12);
+            --border-soft: rgba(212, 175, 109, 0.22);
+            --button-dark: rgba(25, 25, 31, 0.8);
+            --shadow-soft: rgba(212, 175, 109, 0.16);
+        }
+
+        body[data-theme="professional"] {
+            --bg-primary: #0a0a0f;
+            --bg-soft: rgba(17, 17, 22, 0.85);
+            --bg-panel: rgba(19, 19, 26, 0.82);
+            --bg-card: rgba(20, 20, 28, 0.78);
+            --bg-strong: rgba(10, 10, 15, 0.98);
+            --text-primary: #f5f5f4;
+            --text-secondary: #d6d3d1;
+            --text-muted: #a8a29e;
+            --text-strong: #ffffff;
+            --accent: #d4af6d;
+            --accent-2: #b8893c;
+            --accent-soft: rgba(212, 175, 109, 0.12);
+            --border-soft: rgba(212, 175, 109, 0.22);
+            --button-dark: rgba(25, 25, 31, 0.8);
+            --shadow-soft: rgba(212, 175, 109, 0.16);
+        }
+
+        body {
+            background: radial-gradient(circle at top, rgba(212, 175, 109, 0.14), transparent 28%), var(--bg-primary);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text { background: linear-gradient(90deg, #f8e7b2, #d4af6d, #b8893c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card { background: var(--bg-panel); border: 1px solid rgba(212, 175, 109, 0.18); transition: all 0.3s; height: 100%; }
+        .card:hover { transform: translateY(-5px); border-color: rgba(212, 175, 109, 0.55); box-shadow: 0 22px 40px -28px rgba(212, 175, 109, 0.45); }
         .section-title { position: relative; display: inline-block; padding-bottom: 8px; }
-        .section-title::after { content: ''; position: absolute; width: 60%; height: 4px; background: #38bdf8; bottom: 0; left: 0; border-radius: 2px; }
-        .skill-badge { display: inline-flex; align-items: center; padding: 0.55rem 0.9rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); color: #bae6fd; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; }
-        .metric-card { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.22); border-radius: 1rem; padding: 1.2rem; text-align: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03); }
-        .metric-card .value { font-size: 2rem; font-weight: 800; color: #7dd3fc; }
-        .metric-card .label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #cbd5e1; }
+        .section-title::after { content: ''; position: absolute; width: 60%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); bottom: 0; left: 0; border-radius: 2px; }
+        .skill-badge { display: inline-flex; align-items: center; padding: 0.55rem 0.9rem; border-radius: 9999px; background: var(--accent-soft); border: 1px solid rgba(212, 175, 109, 0.25); color: #f3dba5; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; }
+        .metric-card { background: var(--bg-card); border: 1px solid rgba(212, 175, 109, 0.18); border-radius: 1rem; padding: 1.2rem; text-align: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.02); }
+        .metric-card .value { font-size: 2rem; font-weight: 800; color: #f1d79a; }
+        .metric-card .label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
         .btn-primary, .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1.6rem; border-radius: 9999px; font-weight: 700; transition: all 0.2s ease; }
-        .btn-primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #05111d; box-shadow: 0 16px 30px -15px rgba(56, 189, 248, 0.8); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px -16px rgba(96,165,250,0.85); }
-        .btn-secondary { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; }
-        .btn-secondary:hover { border-color: rgba(56, 189, 248, 0.7); color: #7dd3fc; }
-        .project-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #7dd3fc; font-size: 0.875rem; font-weight: 600; }
-        .project-link:hover { color: #e0f2fe; }
-        .project-link:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 4px; border-radius: 0.25rem; }
-        .hero-tag { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 0.9rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.08); color: #bae6fd; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; }
-        .highlight-panel { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 1.2rem; padding: 1.5rem; }
+        .btn-primary { background: linear-gradient(135deg, #f2d79a, #d4af6d 45%, #b8893c); color: #0f0f12; box-shadow: 0 16px 30px -15px rgba(212, 175, 109, 0.9); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px -16px rgba(212, 175, 109, 0.9); }
+        .btn-secondary { background: rgba(19, 19, 26, 0.9); border: 1px solid rgba(212, 175, 109, 0.25); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: rgba(212, 175, 109, 0.7); color: #f3dba5; }
+        .project-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #f3dba5; font-size: 0.875rem; font-weight: 600; }
+        .project-link:hover { color: #fff4d6; }
+        .project-link:focus-visible { outline: 2px solid #f3dba5; outline-offset: 4px; border-radius: 0.25rem; }
+        .hero-tag { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 0.9rem; border-radius: 9999px; border: 1px solid rgba(212, 175, 109, 0.38); background: rgba(212, 175, 109, 0.08); color: #f2d79a; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; }
+        .highlight-panel { background: rgba(17, 17, 22, 0.9); border: 1px solid rgba(212, 175, 109, 0.18); border-radius: 1.2rem; padding: 1.5rem; }
+        .glass-panel { background: rgba(17, 17, 22, 0.8); border: 1px solid rgba(212, 175, 109, 0.22); backdrop-filter: blur(10px); }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(17, 17, 22, 0.9); border: 1px solid rgba(212,175,109,0.28); color: #f7e4af; }
+        .hero-spotlight { background: linear-gradient(135deg, rgba(212,175,109,0.12), rgba(17,17,22,0.08)); border: 1px solid rgba(212,175,109,0.28); }
         .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        .contact-form { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148,163,184,0.22); border-radius: 1rem; padding: 1.25rem; }
-        .contact-form input, .contact-form textarea { width: 100%; border: 1px solid rgba(148,163,184,0.25); background: rgba(15,23,42,0.7); color: #e2e8f0; border-radius: 0.75rem; padding: 0.8rem 0.95rem; outline: none; }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: rgba(56,189,248,0.7); box-shadow: 0 0 0 3px rgba(56,189,248,0.15); }
+        .contact-form { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 1rem; padding: 1.25rem; }
+        .contact-form input, .contact-form textarea { width: 100%; border: 1px solid rgba(212,175,109,0.22); background: rgba(11,11,17,0.9); color: var(--text-primary); border-radius: 0.75rem; padding: 0.8rem 0.95rem; outline: none; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: rgba(212,175,109,0.7); box-shadow: 0 0 0 3px rgba(212,175,109,0.12); }
         .mobile-menu { display: none; }
         @media (max-width: 767px) {
             .mobile-menu { display: inline-flex; }
@@ -54,21 +99,29 @@
                 padding: 1rem;
                 box-shadow: 0 18px 40px rgba(2, 6, 23, 0.45);
             }
+            body[data-theme="professional"] .menu-panel { background: rgba(255,255,255,0.96); }
             .menu-panel.open {
                 opacity: 1;
                 pointer-events: auto;
                 transform: translateY(0);
             }
             .menu-panel a { display: block; padding: 0.75rem 0.5rem; border-radius: 0.75rem; color: #cbd5e1; }
+            body[data-theme="professional"] .menu-panel a { color: #334155; }
             .menu-panel a:hover { background: rgba(56, 189, 248, 0.08); color: #7dd3fc; }
         }
     </style>
 </head>
-<body>
+<body data-theme="startup">
 
-    <nav class="fixed w-full z-50 bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800 p-4">
+    <nav class="fixed w-full z-50 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-[#d4af6d]/20 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
         <div class="container mx-auto flex justify-between items-center relative">
-            <h1 class="text-xl font-bold gradient-text">Ali Öner Filibeli</h1>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#f8e7b2] to-[#b8893c] flex items-center justify-center font-bold text-[#0a0a0f]">AF</div>
+                <div>
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#d6d3d1]">Portfolio</p>
+                    <h1 class="text-lg font-bold gradient-text">Ali Öner Filibeli</h1>
+                </div>
+            </div>
             <div class="desktop-nav hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="#about" class="hover:text-sky-400 transition">Hakkımda</a>
                 <a href="#projects" class="hover:text-sky-400 transition">Projeler</a>
@@ -93,39 +146,79 @@
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 reveal">
-        <span class="hero-tag">Full-Stack & Cloud Developer</span>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Ali Öner <span class="gradient-text">Filibeli</span></h1>
-        <p class="text-lg md:text-xl text-slate-400 max-w-3xl leading-relaxed">
-            Yönetim Bilişim Sistemleri Uzmanı & Developer.
-            Mikroservis mimarisi, bulut çözümleri ve kullanıcı odaklı ürün geliştirme üzerine çalışan profesyonel.
-        </p>
-        <div class="mt-10 flex flex-wrap justify-center gap-8">
-            <a href="https://github.com/oner98" target="_blank" class="flex items-center gap-2 hover:text-sky-400 transition text-lg font-medium">
-                <i class="fab fa-github text-2xl"></i> github.com/oner98
-            </a>
-            <a href="https://linkedin.com/in/ali-öner-filibeli-5086b82b8" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-sky-400 transition text-lg font-medium">
-                <i class="fab fa-linkedin text-2xl text-[#0077b5]"></i> linkedin.com/in/ali-öner-filibeli-5086b82b8
-            </a>
-        </div>
-
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="Ali_Oner_Filibeli_CV.pdf" download class="btn-primary"><i class="fas fa-download"></i> CV İndir</a>
-            <a href="#projects" class="btn-secondary"><i class="fas fa-arrow-right"></i> Projeleri Gör</a>
-        </div>
-
-        <div class="mt-12 grid gap-6 md:grid-cols-3 w-full max-w-4xl">
-            <div class="metric-card reveal">
-                <div class="value">5+</div>
-                <div class="label">Proje</div>
+    <section class="min-h-screen flex items-center px-4 pt-24 pb-16 reveal">
+        <div class="container mx-auto grid lg:grid-cols-[1.3fr_0.7fr] gap-10 items-center">
+            <div class="text-left">
+                <div class="flex flex-wrap items-center gap-4 mb-6">
+                    <span class="hero-tag">Full-Stack & Cloud Developer</span>
+                    <span class="hero-badge"><i class="fas fa-circle text-[8px] text-emerald-400"></i> Available for work</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl xl:text-7xl font-extrabold leading-none mb-6">
+                    Ali Öner <span class="gradient-text">Filibeli</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-8">
+                    Yönetim Bilişim Sistemleri uzmanı ve yazılım geliştiricisiyim. Kullanıcı odaklı web uygulamaları, mikroservis mimarisi ve bulut çözümleriyle değer üreten modern ekiplerde çalışmayı tercih ediyorum.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-10">
+                    <a href="#projects" class="btn-primary"><i class="fas fa-arrow-right"></i> Projeleri Gör</a>
+                    <a href="Ali_Oner_Filibeli_CV.pdf" download class="btn-secondary"><i class="fas fa-download"></i> CV İndir</a>
+                </div>
+                <div class="flex flex-wrap gap-8 text-slate-300 text-sm">
+                    <div>
+                        <div class="text-2xl font-bold text-sky-300">5+</div>
+                        <div>Yapılan proje</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-sky-300">3+</div>
+                        <div>Bulut deneyimi</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-sky-300">2+</div>
+                        <div>Sektörel katılım</div>
+                    </div>
+                </div>
             </div>
-            <div class="metric-card reveal">
-                <div class="value">3+</div>
-                <div class="label">Bulut deneyimi</div>
-            </div>
-            <div class="metric-card reveal">
-                <div class="value">2+</div>
-                <div class="label">Sektörel katılım</div>
+
+            <div class="hero-spotlight glass-panel rounded-[2rem] p-6 md:p-8 shadow-[0_30px_80px_rgba(14,116,144,0.15)]">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.2em] text-sky-300">Özeti</p>
+                        <h2 class="text-2xl font-bold text-white mt-2">Developer Profile</h2>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f8e7b2] to-[#b8893c] flex items-center justify-center text-xl text-[#0a0a0f] font-black">AF</div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="rounded-2xl bg-slate-950/40 border border-slate-700 p-4">
+                        <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2">Yetenekler</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">Java</span>
+                            <span class="skill-badge">Spring</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">React</span>
+                            <span class="skill-badge">Azure</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="rounded-2xl bg-slate-950/40 border border-slate-700 p-4">
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">İçerik</p>
+                            <p class="text-2xl font-bold text-white mt-2">+20</p>
+                            <p class="text-xs text-slate-400 mt-1">Öğrenme kaynağı</p>
+                        </div>
+                        <div class="rounded-2xl bg-slate-950/40 border border-slate-700 p-4">
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">İletişim</p>
+                            <p class="text-sm font-semibold text-sky-300 mt-2">filibelialioner@gmail.com</p>
+                            <p class="text-xs text-slate-400 mt-1">Kocaeli / Türkiye</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between rounded-2xl border border-sky-500/30 bg-sky-500/5 px-4 py-3">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.15em] text-sky-200">İletişime hazır</p>
+                            <p class="text-sm text-slate-200 mt-1">İş birliği ve proje fırsatları için</p>
+                        </div>
+                        <a href="#contact" class="text-sky-300 hover:text-white"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -144,6 +237,38 @@
                 <div>
                     <p class="text-sky-400 text-2xl font-bold">3</p>
                     <p class="text-slate-300 text-sm mt-2">Sürekli öğrenme ve ekip uyumu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 reveal">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mb-12">
+                <p class="text-sm uppercase tracking-[0.2em] text-sky-400 mb-4">Neler yapıyorum</p>
+                <h2 class="text-3xl font-bold section-title">Güçlü çözümler, net sonuçlar</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-300 flex items-center justify-center mb-5">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Web Geliştirme</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Modern arayüzler, kullanıcı deneyimi odaklı uygulama geliştirme ve temiz, sürdürülebilir frontend çözümleri üretiriyorum.</p>
+                </div>
+                <div class="card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-300 flex items-center justify-center mb-5">
+                        <i class="fas fa-cloud text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Bulut & Mimari</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Mikroservis yapıları, API tasarımı ve bulut tabanlı altyapılarla güvenilir ve ölçeklenebilir çözümler kuruyorum.</p>
+                </div>
+                <div class="card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-300 flex items-center justify-center mb-5">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Ekip ve Süreç</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Takım içi koordinasyon, iş akışı yönetimi ve iletişim odaklı çalışma ile daha verimli ve sürdürülebilir projeler geliştiriyorum.</p>
                 </div>
             </div>
         </div>
@@ -171,9 +296,9 @@
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-8 section-title">Teknik Yetkinlikler</h2>
+                    <h2 class="text-3xl font-bold mb-8 section-title">Neden benimle çalışmalısınız?</h2>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Yazılım geliştirme, sistem tasarımı, bulut altyapısı ve veri odaklı iş akışları alanında çalışmaya odaklandığım bir profilim var. Projelerimde hem kullanıcı deneyimini hem de sürdürülebilir teknik çözümleri ön planda tutuyorum.
+                        Yazılım geliştirme, sistem tasarımı, bulut altyapısı ve veri odaklı iş akışları alanında çalışmaya odaklanıyorum. Projelerimde hem kullanıcı deneyimini hem de sürdürülebilir teknik çözümleri ön planda tutuyorum; aynı zamanda ekip içinde düzenli iletişim ve net teslimat odaklı çalışıyorum.
                     </p>
                     <div class="flex flex-wrap gap-3">
                         <span class="skill-badge">Java</span>
@@ -199,146 +324,134 @@
     <section id="projects" class="py-24 reveal">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12 section-title">Projeler</h2>
-            <div class="grid md:grid-cols-3 gap-8 text-left">
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 text-left">
                 <div class="card p-8 rounded-2xl">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Serverless Booking</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">AWS</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Etkinlik/rezervasyon süreçlerini otomatikleştiren serverless uygulama. Lambda tabanlı iş akışları ve DynamoDB ile güvenli ve ölçeklenebilir bir yapı sundu.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Lambda</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">DynamoDB</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Serverless</span>
-                    </div>
-                </div>
-
-                <div class="card p-8 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Android Kotlin Uygulaması</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Kotlin</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Android Studio ile geliştirilmiş temel bir Kotlin mobil uygulaması. Proje, Android arayüzü ve uygulama yapısı üzerine çalışmaları içeriyor.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Android</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Kotlin</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Android Studio</span>
-                    </div>
-                    <a href="https://github.com/oner98/mobile-app" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Android Kotlin Uygulaması GitHub deposunu yeni sekmede aç">
-                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
-                    </a>
-                </div>
-
-                <div class="card p-8 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Weather App</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">API</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        REST API entegrasyonu ve önbellekleme mantığı ile geliştirilen hava durumu uygulaması; hızlı erişim ve düşük gecikmeyi hedefledi.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">REST</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Firebase</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Caching</span>
-                    </div>
-                </div>
-
-                <div class="card p-8 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">School Management</h3>
+                        <h3 class="text-xl font-bold text-white">Event Planner Microservices</h3>
                         <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Java</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Öğrenci, öğretmen, ders ve not yönetimini tek bir sistemde birleştiren kurumsal uygulama. İş akışlarını sadeleştirerek daha düzenli bir veri yönetimi sağladı.
+                        Etkinlik, rezervasyon ve ödeme sorumluluklarını ayrı servislere bölen çok modüllü backend çalışması. Depoda ayrıca servis keşif sunucusu ve API Gateway modülü bulunuyor.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Spring</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">MySQL</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Admin Panel</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Spring Boot</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Spring Cloud</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Maven</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Java 17</span>
                     </div>
-                </div>
-
-                <div class="card p-8 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Smart Inventory</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">C#</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Stok takibi, satış raporları ve düşük stok uyarıları ile çalışan .NET tabanlı kurumsal çözüm. Operasyonel kararları daha hızlı vermeyi kolaylaştırdı.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">.NET</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">PostgreSQL</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Dashboard</span>
-                    </div>
-                </div>
-
-                <div class="card p-8 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Yapay Zeka Yardımcısı</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Python</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Sohbet, metin analizi ve istatistikleri, dosya işlemleri ve kelime sıklığı analizi sunan Python tabanlı yardımcı uygulama.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Python</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Chatbot</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Text Analysis</span>
-                    </div>
-                    <a href="https://github.com/oner98/ai-Project" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Yapay Zeka Yardımcısı GitHub deposunu yeni sekmede aç">
+                    <a href="https://github.com/oner98/eventplanner/tree/main/eventplanner-main/eventplanner_parent_linked/eventplanner3" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Event Planner Microservices GitHub deposunu yeni sekmede aç">
                         <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
                     </a>
                 </div>
 
                 <div class="card p-8 rounded-2xl">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Cloud Deploy Monitor</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Azure</span>
+                        <h3 class="text-xl font-bold text-white">Python Yardımcı Uygulaması</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Python</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Uygulama dağıtım durumunu izleyen, hataları loglayabilen ve servis sağlığını takip eden bulut izleme çözümü. DevOps odaklı görünüm ve operasyonel sürdürülebilirlik oluşturdu.
+                        Sohbet arayüzü, metin analizi ve istatistikleri, kelime sıklığı incelemesi ile metin/JSON/CSV dosya işlemlerini bir araya getiren masaüstü yardımcı uygulaması.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Azure</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Monitoring</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">DevOps</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Python</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Tkinter GUI</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Text Processing</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">CSV / JSON</span>
                     </div>
+                    <a href="https://github.com/oner98/ai-Project" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Python Yardımcı Uygulaması GitHub deposunu yeni sekmede aç">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
+                    </a>
                 </div>
 
                 <div class="card p-8 rounded-2xl">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Microservice Gateway</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Docker</span>
+                        <h3 class="text-xl font-bold text-white">gRPC İstemci-Sunucu Laboratuvarı</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Java</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Birden fazla servis arasında yönlendirme, güvenlik ve ağ tasarımını yöneten mikroservis mimarisi örneği. Hizmetler arası iletişimi daha düzenli ve yönetilebilir hale getirdi.
+                        Protocol Buffers ile tanımlanan Greeter servisi üzerinden Java gRPC istemcisi ve sunucusunun iletişimini gösteren öğrenme çalışması.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Microservices</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Docker</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Kubernetes</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">gRPC</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Protocol Buffers</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Maven</span>
                     </div>
+                    <a href="https://github.com/oner98/grpc-server" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="gRPC İstemci-Sunucu Laboratuvarı GitHub deposunu yeni sekmede aç">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
+                    </a>
                 </div>
 
                 <div class="card p-8 rounded-2xl">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-white">Data Insight Hub</h3>
-                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">SQL</span>
+                        <h3 class="text-xl font-bold text-white">Film Satın Alma ve Kiralama Sistemi</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Java</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        MySQL ve PostgreSQL verilerini birleştirerek rapor ve özetleme arayüzü oluşturan analitik altyapı. Karar verme süreçlerinde veri odaklı yaklaşımı destekledi.
+                        Film kataloğu, kullanıcı kredisi, satın alma ve abonelik üzerinden kiralama akışlarını nesne yönelimli sınıflarla modelleyen konsol çalışması.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">SQL</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Analytics</span>
-                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Reporting</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Java</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">OOP</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Inheritance</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Collections</span>
                     </div>
+                    <a href="https://github.com/oner98/film-sistemi" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Film Satın Alma ve Kiralama Sistemi GitHub deposunu yeni sekmede aç">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
+                    </a>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Alışveriş Sitesi Arayüzü</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">HTML / CSS</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Ürün kartları, görselleri ve kullanıcı bilgi formu içeren statik web arayüzü çalışması.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">HTML</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">CSS</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Responsive Layout</span>
+                    </div>
+                    <a href="https://github.com/oner98/Javascript-example/blob/main/al%C4%B1%C5%9Fveri%C5%9F%20sitesi.html" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Alışveriş Sitesi Arayüzü dosyasını GitHub'da yeni sekmede aç">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
+                    </a>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Windows Forms Çarpım Tablosu</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">C#</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Kullanıcının başlangıç, bitiş ve çarpan değerlerini girerek aralık için çarpım tablosu oluşturduğu masaüstü uygulaması. Sayısal girişler doğrulanır ve sonuçlar liste halinde gösterilir.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">C#</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Windows Forms</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Input Validation</span>
+                    </div>
+                    <a href="https://github.com/oner98/hesap-makinesi-c-/tree/main/hesap%20makinesi" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Windows Forms Çarpım Tablosu GitHub deposunu yeni sekmede aç">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
+                    </a>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">Hava Yolu ve Uçuş Alan Modeli</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-sky-300">Java</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Hava yolu, uçak, pilot, havaalanı ve uçuş kavramlarını sınıflar ve nesne ilişkileriyle modelleyen Java çalışması.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Java</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">OOP</span>
+                        <span class="text-[10px] bg-slate-800 text-sky-300 px-2 py-1 rounded">Domain Modeling</span>
+                    </div>
+                    <a href="https://github.com/oner98/U-u-Y-netim-Sistemi" target="_blank" rel="noopener noreferrer" class="project-link mt-6" aria-label="Hava Yolu ve Uçuş Alan Modeli GitHub deposunu yeni sekmede aç">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub'da incele
+                    </a>
                 </div>
             </div>
             <div class="mt-12 text-slate-500 text-sm italic">
@@ -598,6 +711,14 @@
                         </div>
                     </div>
                     <div class="text-left mb-4">
+                        <label for="deliveryMode" class="block text-sm text-slate-300 mb-2">Gönderim Yöntemi</label>
+                        <select id="deliveryMode" name="deliveryMode" class="w-full border border-[#d4af6d]/25 bg-[#0b0b11] text-white rounded-xl px-4 py-3 outline-none focus:border-[#d4af6d]/80 focus:ring-2 focus:ring-[#d4af6d]/20">
+                            <option value="auto">Otomatik (API varsa veritabanı, yoksa e-posta)</option>
+                            <option value="email">Doğrudan e-posta gönderimi</option>
+                            <option value="database">Doğrudan veritabanı kaydı</option>
+                        </select>
+                    </div>
+                    <div class="text-left mb-4">
                         <label for="message" class="block text-sm text-slate-300 mb-2">Mesaj</label>
                         <textarea id="message" name="message" rows="5" placeholder="İletmek istediğiniz mesajınızı yazın..." required></textarea>
                     </div>
@@ -656,10 +777,52 @@
 
         const contactForm = document.getElementById('contactForm');
         const contactStatus = document.getElementById('contactStatus');
+        const deliveryModeSelect = document.getElementById('deliveryMode');
         const configuredApiBase = document.querySelector('meta[name="api-base-url"]').content.trim();
         const isLocalEnvironment = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        const isGitHubPages = window.location.hostname.endsWith('github.io');
         const localApiBase = isLocalEnvironment ? 'http://localhost:8080' : '';
-        const apiBaseUrl = (configuredApiBase || localApiBase).replace(/\/+$/, '');
+        const apiBaseUrl = (configuredApiBase || (isLocalEnvironment ? localApiBase : isGitHubPages ? '' : localApiBase)).replace(/\/+$/, '');
+
+        const submitViaEmail = (payload) => {
+            const subject = encodeURIComponent('İletişim talebi');
+            const body = encodeURIComponent(`Ad Soyad: ${payload.name}\nE-posta: ${payload.email}\n\nMesaj:\n${payload.message}`);
+            window.location.href = `mailto:filibelialioner@gmail.com?subject=${subject}&body=${body}`;
+            contactStatus.textContent = 'E-posta uygulamanız açıldı. Mesajınızı göndermeyi tamamlayabilirsiniz.';
+            contactStatus.style.color = '#7dd3fc';
+        };
+
+        const submitViaDatabase = async (payload) => {
+            if (!apiBaseUrl) {
+                contactStatus.textContent = 'Veritabanı API adresi tanımlı değil. E-posta gönderim moduna geçiliyor.';
+                contactStatus.style.color = '#fbbf24';
+                submitViaEmail(payload);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                contactStatus.textContent = result.message || (response.ok
+                    ? 'Mesajınız veritabanına kaydedildi.'
+                    : 'Mesaj veritabanına kaydedilemedi. Lütfen tekrar deneyin.');
+                contactStatus.style.color = response.ok ? '#7dd3fc' : '#fca5a5';
+
+                if (response.ok) {
+                    contactForm.reset();
+                }
+            } catch (error) {
+                contactStatus.textContent = 'Veritabanı sunucusuna erişilemedi. E-posta gönderim moduna geçiliyor.';
+                contactStatus.style.color = '#fbbf24';
+                console.error('İletişim formu veritabanı isteği başarısız oldu:', error);
+                submitViaEmail(payload);
+            }
+        };
 
         if (contactForm && contactStatus) {
             contactForm.addEventListener('submit', async (event) => {
@@ -670,40 +833,27 @@
                     email: formData.get('email'),
                     message: formData.get('message')
                 };
+                const selectedMode = deliveryModeSelect ? deliveryModeSelect.value : 'auto';
 
                 contactStatus.textContent = 'Gönderiliyor...';
                 contactStatus.style.color = '#cbd5e1';
 
-                if (!apiBaseUrl) {
-                    const subject = encodeURIComponent('İletişim talebi');
-                    const body = encodeURIComponent(`Ad Soyad: ${payload.name}\nE-posta: ${payload.email}\n\nMesaj:\n${payload.message}`);
-                    window.location.href = `mailto:filibelialioner@gmail.com?subject=${subject}&body=${body}`;
-                    contactStatus.textContent = 'E-posta uygulamanız açıldı. Mesajınızı göndermeyi tamamlayabilirsiniz.';
-                    contactStatus.style.color = '#7dd3fc';
+                if (selectedMode === 'email') {
+                    submitViaEmail(payload);
                     return;
                 }
 
-                try {
-                    const response = await fetch(`${apiBaseUrl}/api/contact`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    const result = await response.json();
-                    contactStatus.textContent = result.message || (response.ok
-                        ? 'Mesajınız gönderildi.'
-                        : 'Mesaj gönderilemedi. Lütfen tekrar deneyin.');
-                    contactStatus.style.color = response.ok ? '#7dd3fc' : '#fca5a5';
-
-                    if (response.ok) {
-                        contactForm.reset();
-                    }
-                } catch (error) {
-                    contactStatus.textContent = 'Sunucuya erişilemedi. Lütfen daha sonra tekrar deneyin.';
-                    contactStatus.style.color = '#fca5a5';
-                    console.error('İletişim formu isteği başarısız oldu:', error);
+                if (selectedMode === 'database') {
+                    await submitViaDatabase(payload);
+                    return;
                 }
+
+                if (!apiBaseUrl) {
+                    submitViaEmail(payload);
+                    return;
+                }
+
+                await submitViaDatabase(payload);
             });
         }
 

@@ -1,0 +1,11 @@
+com\alioner\portfolio\api\PortfolioController$ProfileResponse.class
+com\alioner\portfolio\contact\ContactMessageRepository.class
+com\alioner\portfolio\api\ApiExceptionHandler.class
+com\alioner\portfolio\api\PortfolioController$ProjectResponse.class
+com\alioner\portfolio\api\PortfolioApiApplication.class
+com\alioner\portfolio\api\PortfolioController.class
+com\alioner\portfolio\api\ContactController.class
+com\alioner\portfolio\contact\ContactMessage.class
+com\alioner\portfolio\api\ContactController$ContactResponse.class
+com\alioner\portfolio\contact\ContactRequest.class
+com\alioner\portfolio\contact\ContactMessageService.class

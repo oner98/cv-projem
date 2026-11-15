@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center">
+<div class="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-800 p-8 shadow-xl">
+    <h1 class="mb-6 text-center text-2xl font-bold">Portfolio Admin</h1>
+    <form th:action="@{/login}" method="post">
+        <div class="mb-4">
+            <label for="username" class="mb-2 block text-sm text-slate-300">Kullanıcı Adı</label>
+            <input id="username" name="username" type="text" class="w-full rounded border border-slate-600 bg-slate-900 px-3 py-2 focus:border-sky-400 focus:outline-none" required>
+        </div>
+        <div class="mb-6">
+            <label for="password" class="mb-2 block text-sm text-slate-300">Şifre</label>
+            <input id="password" name="password" type="password" class="w-full rounded border border-slate-600 bg-slate-900 px-3 py-2 focus:border-sky-400 focus:outline-none" required>
+        </div>
+        <button type="submit" class="w-full rounded bg-sky-500 px-4 py-3 font-semibold text-slate-950 hover:bg-sky-400">Giriş Yap</button>
+    </form>
+</div>
+</body>
+</html>

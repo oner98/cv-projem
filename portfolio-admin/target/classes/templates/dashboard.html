@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen">
+<nav class="border-b border-slate-700 bg-slate-800">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <h1 class="text-xl font-bold">Portfolio Admin</h1>
+        <form method="post" th:action="@{/logout}">
+            <button type="submit" class="rounded bg-slate-700 px-3 py-1.5 hover:bg-slate-600">Çıkış</button>
+        </form>
+    </div>
+</nav>
+
+<main class="mx-auto max-w-6xl px-6 py-10">
+    <div class="grid gap-6 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-700 bg-slate-800 p-6">
+            <p class="text-sm text-slate-400">Profil</p>
+            <p class="mt-4 text-3xl font-bold">Ali Öner Filibeli</p>
+        </div>
+        <div class="rounded-xl border border-slate-700 bg-slate-800 p-6">
+            <p class="text-sm text-slate-400">Projeler</p>
+            <p class="mt-4 text-3xl font-bold">7</p>
+        </div>
+        <div class="rounded-xl border border-slate-700 bg-slate-800 p-6">
+            <p class="text-sm text-slate-400">İletişim</p>
+            <p class="mt-4 text-3xl font-bold">24</p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

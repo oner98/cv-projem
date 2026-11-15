@@ -36,6 +36,11 @@ Flyway tarafından oluşturulur.
 - `POST /api/contact` — iletişim formu mesajını doğrular ve veritabanına kaydeder
 - `GET /actuator/health` — uygulama sağlık durumu
 
+Profil, projeler, statik CV dosyaları ve sağlık kontrolü herkese açıktır.
+İletişim mesajları yalnızca `POST /api/contact` üzerinden alınır; mesaj listesi
+ve diğer API/Actuator yolları dış erişime kapalıdır. CORS yalnızca
+`CORS_ALLOWED_ORIGINS` ile tanımlanan kaynaklara izin verir.
+
 İletişim isteği örneği:
 
 ```json
@@ -58,13 +63,14 @@ bulunmaz.
 | `DATABASE_URL` | `jdbc:h2:file:./data/portfolio` | JDBC veritabanı bağlantı adresi |
 | `DB_USERNAME` | `sa` | Veritabanı kullanıcısı |
 | `DB_PASSWORD` | boş | Veritabanı parolası |
-| `CORS_ALLOWED_ORIGINS` | `http://localhost:5500,http://127.0.0.1:5500` | Virgülle ayrılmış, izin verilen web adresleri |
+| `CORS_ALLOWED_ORIGINS` | `http://localhost:5500,http://127.0.0.1:5500,https://oner98.github.io` | Virgülle ayrılmış, izin verilen web adresleri |
 
 Canlı web sayfasını ayrı bir sunucuda barındırıyorsanız, `index.html` içindeki
 `api-base-url` meta etiketine API adresini yazın ve dağıtım ortamında
 `CORS_ALLOWED_ORIGINS` değişkenine web sayfasının tam adresini ekleyin.
 GitHub Pages statik sayfaları tek başına Spring Boot API'sini çalıştıramaz;
-backend ayrıca bir Java sunucusuna dağıtılmalıdır.
+backend ayrıca bir Java sunucusuna dağıtılmalıdır. GitHub Pages sürümünde
+`api-base-url` boş bırakılırsa form otomatik olarak e-posta fallback moduna geçer.
 
 ## Canlı demo ve kaynak kodu
 

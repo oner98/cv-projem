@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: portfolio-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: portfolio-api
+          uri: lb://portfolio-api
+          predicates:
+            - Path=/api/**
+        - id: portfolio-admin
+          uri: lb://portfolio-admin
+          predicates:
+            - Path=/admin/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
